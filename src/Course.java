@@ -88,7 +88,6 @@ public class Course {
 		announcements.add(assignName);
 		String[] placeholders = new String[] {assignName, assignBody};
 		// do some logic here 
-		
 		notifyAllUsers(placeholders);
 	}
 	
@@ -118,9 +117,5 @@ public class Course {
 			student.notifyStudent(notification);
 			emailGateway.sendMessage(notification, student.getEmail());
 		}
-	}
-	
-	
-	
-	
+	}	
 }
