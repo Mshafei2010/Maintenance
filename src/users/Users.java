@@ -1,22 +1,22 @@
-package Users;
+package users;
 
-public class Student {
-	String name;
-	int Id;
-	String email;
-	String phoneNumber;
+import java.sql.Date;
+
+public abstract class Users {
+
+	private String name;
+	private String department;
+	private String email;
+	private String phoneNumber;
 	
-	
-	
-	public Student(String name, int id, String email, String phoneNumber) {
-		super();
+	public Users(String name, String department, String email, String phoneNumber) {
 		this.name = name;
-		Id = id;
+		this.department = department;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 	}
 
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -44,17 +44,12 @@ public class Student {
 		this.name = name;
 	}
 
-	public int getId() {
-		return Id;
+	public String getDepartment() {
+		return department;
 	}
 
-	public void setId(int id) {
-		Id = id;
-	}
-	
-	
-	public void notifyStudent(String message) {
-		// do some stuff
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	
 }
