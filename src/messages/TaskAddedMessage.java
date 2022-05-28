@@ -3,10 +3,9 @@ package messages;
 
 public class TaskAddedMessage implements Message{
 
-	public String prepareMessage(String placeHolders[],WayToSend way) {
+	public String prepareMessage(String [] placeHolders,WayToSend way) {
 		// code to replace place holders of this type
-		
-		return "";
+		return way.prepareMessageWay(placeHolders);
 	}
 	
 	

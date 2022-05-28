@@ -1,35 +1,38 @@
 package Gateways;
 
-import Messages.DailyNewsMobileMessage;
-import Messages.GradesAnnouncementMobileMessage;
-import Messages.TaskAddedMobileMessage;
+import messages.DailyNewsMessage;
+import messages.GradesAnnouncementMessage;
+import messages.Mobile;
+import messages.TaskAddedMessage;
+import messages.WayToSend;
 
 public class SMSGateway {
 	
 	public void sendMessage(Object message, String user) {
 		String[] placeHolders = new String[] {}; // set some place holders here 
 		
-		if(message instanceof DailyNewsMobileMessage) {
-			DailyNewsMobileMessage msg = (DailyNewsMobileMessage) message;
-			
-			msg.prepareMessage(placeHolders);
-			
-			// some code to send message
-		}
-		
-		else if(message instanceof GradesAnnouncementMobileMessage) {
-			GradesAnnouncementMobileMessage msg = (GradesAnnouncementMobileMessage) message;
-			
-			msg.prepareMessage(placeHolders);
+		if(message instanceof DailyNewsMessage) {
+			DailyNewsMessage msg = (DailyNewsMessage) message;
+			WayToSend way = new Mobile();
+			msg.prepareMessage(placeHolders,way);
 			
 			// some code to send message
 		}
 		
-		else if(message instanceof TaskAddedMobileMessage) {
-			TaskAddedMobileMessage msg = (TaskAddedMobileMessage) message;
+		else if(message instanceof GradesAnnouncementMessage) {
+			GradesAnnouncementMessage msg = (GradesAnnouncementMessage) message;
+
+			WayToSend way = new Mobile();
+			msg.prepareMessage(placeHolders,way);
 			
-			msg.prepareMessage(placeHolders);
-			
+			// some code to send message
+		}
+		
+		else if(message instanceof TaskAddedMessage) {
+			TaskAddedMessage msg = (TaskAddedMessage) message;
+
+			WayToSend way = new Mobile();
+			msg.prepareMessage(placeHolders,way);
 			// some code to send message to user
 		}
 		

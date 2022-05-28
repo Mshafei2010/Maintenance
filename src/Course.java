@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 
 import Gateways.EmailGateway;
-import Messages.TaskAddedEmailMessage;
-import users.Professor;
-import users.Student;
-import users.TA;
+import Users.Professor;
+import Users.Student;
+import Users.TA;
+import messages.Email;
+import messages.Message;
+import messages.TaskAddedMessage;
+import messages.WayToSend;
 
 public class Course {
 	
@@ -95,8 +98,9 @@ public class Course {
 
 	private void notifyAllUsers(String[] placeholders) {
 		// notify users by email
-		TaskAddedEmailMessage msg = new TaskAddedEmailMessage();
-		String notification = msg.prepareMessage(placeholders);
+		Message msg = new TaskAddedMessage();
+		WayToSend way = new Email();
+		String notification = msg.prepareMessage(placeholders,way);
 		
 		// open connection for Email gateway and do some configurations to the object
 		

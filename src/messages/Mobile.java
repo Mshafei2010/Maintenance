@@ -2,7 +2,7 @@ package messages;
 
 public class Mobile implements WayToSend{
 	
-	public String prepareMessage(String placeHolders[]) {
+	public String prepareMessageWay(String [] placeHolders) {
 		// code to replace place holders of this type
 		return "";
 	}
