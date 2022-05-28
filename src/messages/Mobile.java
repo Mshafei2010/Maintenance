@@ -1,6 +1,6 @@
-package Messages;
+package messages;
 
-public class DailyNewsEmailMessage {
+public class Mobile implements WayToSend{
 	
 	public String prepareMessage(String placeHolders[]) {
 		// code to replace place holders of this type
