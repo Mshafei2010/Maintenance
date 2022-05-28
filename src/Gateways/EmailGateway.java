@@ -1,34 +1,38 @@
 package Gateways;
 
-import Messages.DailyNewsEmailMessage;
-import Messages.GradesAnnouncementEmailMessage;
-import Messages.TaskAddedEmailMessage;
+import messages.DailyNewsMessage;
+import messages.Email;
+import messages.GradesAnnouncementMessage;
+import messages.TaskAddedMessage;
+import messages.WayToSend;
 
 public class EmailGateway {
 	
 	public void sendMessage(Object message, String user) {
 		String[] placeHolders = new String[] {}; // set some place holders here 
 		
-		if(message instanceof DailyNewsEmailMessage) {
-			DailyNewsEmailMessage dailyNewsEmailMessage = (DailyNewsEmailMessage) message;
-			
-			dailyNewsEmailMessage.prepareMessage(placeHolders);
-			
-			// some code to send message
-		}
-		
-		else if(message instanceof GradesAnnouncementEmailMessage) {
-			GradesAnnouncementEmailMessage announcementEmailMessage = (GradesAnnouncementEmailMessage) message;
-			
-			announcementEmailMessage.prepareMessage(placeHolders);
+		if(message instanceof DailyNewsMessage) {
+			DailyNewsMessage dailyNewsEmailMessage = (DailyNewsMessage) message;
+			WayToSend way = new Email();
+			dailyNewsEmailMessage.prepareMessage(placeHolders,way);
 			
 			// some code to send message
 		}
 		
-		else if(message instanceof TaskAddedEmailMessage) {
-			TaskAddedEmailMessage addedEmailMessage = (TaskAddedEmailMessage) message;
+		else if(message instanceof GradesAnnouncementMessage) {
+			GradesAnnouncementMessage announcementEmailMessage = (GradesAnnouncementMessage) message;
+
+			WayToSend way = new Email();
+			announcementEmailMessage.prepareMessage(placeHolders,way);
 			
-			addedEmailMessage.prepareMessage(placeHolders);
+			// some code to send message
+		}
+		
+		else if(message instanceof TaskAddedMessage) {
+			TaskAddedMessage addedEmailMessage = (TaskAddedMessage) message;
+
+			WayToSend way = new Email();
+			addedEmailMessage.prepareMessage(placeHolders,way);
 			
 			// some code to send message by email to user
 		}
