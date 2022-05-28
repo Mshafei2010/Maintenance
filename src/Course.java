@@ -1,6 +1,7 @@
 import java.util.ArrayList;
-import Gateways.EmailGateway;
-import Gateways.SMSGateway;
+
+import gateways.EmailGateway;
+import gateways.SMSGateway;
 import users.User;
 import messages.Email;
 import messages.Message;
