@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-
 import Gateways.EmailGateway;
-import Users.Professor;
-import Users.Student;
-import Users.TA;
+import Gateways.SMSGateway;
+import users.User;
 import messages.Email;
 import messages.Message;
+import messages.Mobile;
 import messages.TaskAddedMessage;
 import messages.WayToSend;
 
@@ -17,32 +16,21 @@ public class Course {
 	ArrayList<String> exams;
 	ArrayList<String> grades;
 	
-	ArrayList<Professor> professorsForEmailNotification;
-	ArrayList<Professor> professorsForSMSNotification;
+	ArrayList<User> peopleForEmail;
+	ArrayList<User> peopleForSMS;
 	
-	ArrayList<TA> TAsForEmailNotification;
-	ArrayList<TA> TAsForSMSNotification;
 	
-	ArrayList<Student> studentsForEmailNotification;
-	ArrayList<Student> studentsForSMSNotification;
 	
 	public Course(String name, String code) {
-		super();
 		this.name = name;
 		this.code = code;
 		
 		announcements = new ArrayList<String>();
-		exams = new ArrayList<String>();
-		grades = new ArrayList<String>();
+		exams = new ArrayList<>();
+		grades = new ArrayList<>();
+		peopleForEmail=new ArrayList<>();
+		peopleForSMS=new ArrayList<>();
 		
-		professorsForEmailNotification = new ArrayList<Professor>();
-		professorsForSMSNotification = new ArrayList<Professor>();
-		
-		TAsForEmailNotification = new ArrayList<TA>();
-		TAsForSMSNotification = new ArrayList<TA>();
-		
-		studentsForEmailNotification = new ArrayList<Student>();
-		studentsForSMSNotification = new ArrayList<Student>();
 	}
 
 	public String getName() {
@@ -61,42 +49,33 @@ public class Course {
 		this.code = code;
 	}
 	
-	public void subscribeProfessorForEmailNotification(Professor professor) {
-		professorsForEmailNotification.add(professor);
+	public void attachPeopleForEmailNotification(User user) {
+		peopleForEmail.add(user);
 	}
 	
-	public void subscribeProfessorForSMSNotification(Professor professor) {
-		professorsForSMSNotification.add(professor);
+	public void attachPeopleForPhoneNotification(User user) {
+		peopleForEmail.add(user);
 	}
-	
-	public void subscribeTAForEmailNotification(TA ta) {
-		TAsForEmailNotification.add(ta);
+	public void deattachFromEmailNotification(User user) {
+		peopleForEmail.remove(user);
 	}
-	
-	public void subscribeTAForSMSNotification(TA ta) {
-		TAsForSMSNotification.add(ta);
-	}
-	
-	public void subscribeStudentForEmailNotification(Student student) {
-		studentsForEmailNotification.add(student);
-	}
-	
-	public void subscribeStudentForSMSNotification(Student student) {
-		studentsForSMSNotification.add(student);
+	public void deattachFromPhoneNotification(User user) {
+		peopleForEmail.remove(user);
 	}
 	
 	
 	
-	public void AddAssignment(String assignName, String assignBody) {
+	public void aaddAssignment(String assignName, String assignBody) {
 		announcements.add(assignName);
 		String[] placeholders = new String[] {assignName, assignBody};
 		// do some logic here 
-		notifyAllUsers(placeholders);
+		notifyAllUsersByMail(placeholders);
+		notifyAllUsersBySMS(placeholders);
 	}
 	
 	// AddExam, PostGrades, PostAnnouncement  will be the same 
 
-	private void notifyAllUsers(String[] placeholders) {
+	private void notifyAllUsersByMail(String[] placeholders) {
 		// notify users by email
 		Message msg = new TaskAddedMessage();
 		WayToSend way = new Email();
@@ -106,20 +85,24 @@ public class Course {
 		
 		EmailGateway emailGateway = new EmailGateway();
 		
-		
-		for (Professor professor : professorsForEmailNotification) {
-			professor.notifyProfessor(notification);
-			emailGateway.sendMessage(notification, professor.getEmail());
+		for (User user : peopleForEmail) {
+		     user.update(notification);
+			emailGateway.sendMessage(notification,user.getEmail());
 		}
+	}
+	private void notifyAllUsersBySMS(String[] placeholders) {
+		// notify users by email
+		Message msg = new TaskAddedMessage();
+		WayToSend way = new Mobile();
+		String notification = msg.prepareMessage(placeholders,way);
 		
-		for (TA ta : TAsForEmailNotification) {
-			ta.notifyTA(notification);
-			emailGateway.sendMessage(notification, ta.getEmail());
-		}
+		// open connection for Email gateway and do some configurations to the object
 		
-		for (Student student : studentsForSMSNotification) {
-			student.notifyStudent(notification);
-			emailGateway.sendMessage(notification, student.getEmail());
+		SMSGateway smsGateway = new SMSGateway();
+		
+		for (User user : peopleForEmail) {
+		     user.update(notification);
+			smsGateway.sendMessage(notification,user.getEmail());
 		}
-	}	
+	}
 }

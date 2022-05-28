@@ -2,7 +2,7 @@ package users;
 
 import java.sql.Date;
 
-public class Professor extends Users{
+public class Professor extends User{
 	private Date hirringDate;
 	private String phDTopic;
 
@@ -22,10 +22,9 @@ public class Professor extends Users{
 		this.phDTopic = phDTopic;
 	}
 	
-	
-	public void notifyProfessor(String message) {
+	@Override
+	public void update(String message) {
 		// do some stuff
-		
 	}
 	
 	
