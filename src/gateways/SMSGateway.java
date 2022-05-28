@@ -1,20 +1,22 @@
-package Gateways;
+package gateways;
 
 import messages.DailyNewsMessage;
+
 import messages.GradesAnnouncementMessage;
+import messages.Message;
 import messages.Mobile;
 import messages.TaskAddedMessage;
 import messages.WayToSend;
 
-public class SMSGateway {
+public class SMSGateway implements Gateways{
 	
-	public void sendMessage(Object message, String user) {
+	public void sendMessage(Message message, String user) {
 		String[] placeHolders = new String[] {}; // set some place holders here 
 		
 		if(message instanceof DailyNewsMessage) {
 			DailyNewsMessage msg = (DailyNewsMessage) message;
-			WayToSend way = new Mobile();
-			msg.prepareMessage(placeHolders,way);
+			WayToSend mobile = new Mobile();
+			msg.prepareMessage(placeHolders,mobile);
 			
 			// some code to send message
 		}
@@ -22,8 +24,8 @@ public class SMSGateway {
 		else if(message instanceof GradesAnnouncementMessage) {
 			GradesAnnouncementMessage msg = (GradesAnnouncementMessage) message;
 
-			WayToSend way = new Mobile();
-			msg.prepareMessage(placeHolders,way);
+			WayToSend mobile = new Mobile();
+			msg.prepareMessage(placeHolders,mobile);
 			
 			// some code to send message
 		}
@@ -31,8 +33,8 @@ public class SMSGateway {
 		else if(message instanceof TaskAddedMessage) {
 			TaskAddedMessage msg = (TaskAddedMessage) message;
 
-			WayToSend way = new Mobile();
-			msg.prepareMessage(placeHolders,way);
+			WayToSend mobile = new Mobile();
+			msg.prepareMessage(placeHolders,mobile);
 			// some code to send message to user
 		}
 		
