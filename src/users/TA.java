@@ -1,15 +1,13 @@
 package users;
 
-public class TA extends Users{
+public class TA extends User{
 
 	public TA(String name, String department, String email, String phoneNumber) {
 		super(name,department,email,phoneNumber);
 	}
 
-	
-	public void notifyTA(String message) {
+	@Override
+	public void update(String message) {
 		// do some stuff
-		
 	}
-	
 }

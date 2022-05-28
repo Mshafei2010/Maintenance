@@ -2,7 +2,7 @@ package users;
 
 public class GetUsersFactory{
 	
-public Users GetUsersFactory(String UserType,String name, String department, String email, String phoneNumber) {
+public User GetUsersFactory(String UserType,String name, String department, String email, String phoneNumber) {
 	
 	if(UserType==null)
 	{
