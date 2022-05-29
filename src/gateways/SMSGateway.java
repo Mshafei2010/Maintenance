@@ -10,7 +10,7 @@ import messages.WayToSend;
 
 public class SMSGateway implements Gateways{
 	
-	public void sendMessage(Message message, String user) {
+	public void sendMessage(Object message, String user) {
 		String[] placeHolders = new String[] {}; // set some place holders here 
 		
 		if(message instanceof DailyNewsMessage) {
