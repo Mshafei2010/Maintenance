@@ -3,6 +3,6 @@ package gateways;
 import messages.Message;
 
 public interface Gateways {
-	public void sendMessage (Message message, String user);
+	public void sendMessage (Object message, String user);
 
 }
