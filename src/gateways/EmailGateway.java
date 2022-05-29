@@ -2,9 +2,9 @@ package gateways;
 
 
 import messages.DailyNewsMessage;
+
 import messages.Email;
 import messages.GradesAnnouncementMessage;
-import messages.Message;
 import messages.TaskAddedMessage;
 import messages.WayToSend;
 

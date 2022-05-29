@@ -3,7 +3,6 @@ package gateways;
 import messages.DailyNewsMessage;
 
 import messages.GradesAnnouncementMessage;
-import messages.Message;
 import messages.Mobile;
 import messages.TaskAddedMessage;
 import messages.WayToSend;

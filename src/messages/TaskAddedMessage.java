@@ -10,6 +10,7 @@ public class TaskAddedMessage implements Message{
 	
 	
 	public void addTeamDescription() {
+		//some logic
 		
 	}
 }

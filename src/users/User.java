@@ -1,6 +1,5 @@
 package users;
 
-import java.sql.Date;
 
 public abstract class User {
 
@@ -9,7 +8,7 @@ public abstract class User {
 	private String email;
 	private String phoneNumber;
 	
-	public User(String name, String department, String email, String phoneNumber) {
+	protected User(String name, String department, String email, String phoneNumber) {
 		this.name = name;
 		this.department = department;
 		this.email = email;

@@ -2,24 +2,24 @@ package users;
 
 public class GetUsersFactory{
 	
-public User GetUsersFactory(String UserType,String name, String department, String email, String phoneNumber) {
+public User getUsers(String userType,String name, String department, String email, String phoneNumber) {
 	
-	if(UserType==null)
+	if(userType==null)
 	{
 	return null;
     
 	}
-	if(UserType.equalsIgnoreCase("Professor"))
+	if(userType.equalsIgnoreCase("Professor"))
 	{
 	return new Professor(name, department,email,phoneNumber);
     
 	}
-	if(UserType.equalsIgnoreCase("TA"))
+	if(userType.equalsIgnoreCase("TA"))
 	{
 	return new TA(name, department,email,phoneNumber);
     
 	}
-	if(UserType.equalsIgnoreCase("Student"))
+	if(userType.equalsIgnoreCase("Student"))
 	{
 	return new Student(name, department,email,phoneNumber);
     
